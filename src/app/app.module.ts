@@ -11,7 +11,15 @@ import { RegisterComponent } from './components/index/register/register.componen
 // Material
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule} from '@angular/material/card';
+import { MatButtonModule} from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+
 import { LoginAdminComponent } from './components/admin/login-admin/login-admin.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,16 +27,28 @@ import { LoginAdminComponent } from './components/admin/login-admin/login-admin.
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
+    // Material
     BrowserAnimationsModule,
     MatSliderModule,
     MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    NgbModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    
+  ],
+  bootstrap: [AppComponent,]
 })
 export class AppModule { }
