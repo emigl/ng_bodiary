@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/index/register/register.componen
 
 // Material
 import { MatSliderModule } from '@angular/material/slider';
+import { MatCardModule} from '@angular/material/card';
 import { LoginAdminComponent } from './components/admin/login-admin/login-admin.component';
 
 
@@ -25,6 +26,7 @@ import { LoginAdminComponent } from './components/admin/login-admin/login-admin.
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
