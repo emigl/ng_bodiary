@@ -1,11 +1,43 @@
-<div class="container">
-    <div class="row">
-        <mat-card>
-            <mat-card-title class="text-center">Login</mat-card-title>
-            
+<!-- Centrar el container al medio de la página de alguna manera -->
+<section class="container-fluid p-0 pt-2 d-flex justify-content-center align-content-center ">
+    <div class="row w-100 justify-content-center">
+        <mat-card class="col-sm-12 col-md-10 text-center">
+            <mat-card-title class="text-center">Bodiary</mat-card-title>
+            <mat-card-subtitle>Inicia sesión</mat-card-subtitle>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <mat-form-field class="formField mb-2" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="email" class="form-control" id="emailInput" formControlName="email" required matInput>
+                    <mat-error *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+                        Introduce un email
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="formField mb-2" appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" class="form-control" id="password" formControlName="password" required matInput>
+                    <mat-error *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+                        Introduce una contraseña
+                    </mat-error>
+                </mat-form-field>
+                
+                
+                <div class="mb-3 form-check">
+                  <mat-checkbox formControlName="remember" color="primary" class="mr-3">
+
+                      <label class="form-check-label">Recuérdame</label>
+                  </mat-checkbox>
+                </div>
+                <div class="form-group">
+                    <button type="button" mat-stroked-button color="accent" routerLink="/register"class="m-1 loginButton">Registrarse</button>
+    
+                    <button type="submit" mat-stroked-button color="primary" class="m-1 loginButton">Entrar</button>
+
+                </div>
+                
+              </form>
         
         </mat-card>
 
     </div>
 
-</div>
+</section>
