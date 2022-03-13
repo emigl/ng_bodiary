@@ -1,8 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;0,600;0,800;0,900;1,500;1,600&display=swap');
+@font-face {
+    font-family: 'spantaranregular';
+    src: url('assets/fonts/spantaran/spantaran-webfont.woff2') format('woff2'),
+         url('assets/fonts/spantaran/spantaran-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 
+}
+/* End Fonts */
+
+*{
+    font-family: 'Nunito','Roboto', "Helvetica Neue", sans-serif;
+}
 html, body { height: 100%; }
 body { 
     background-color: #FFFCFF;
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: 'Nunito', "Helvetica Neue", sans-serif;
  }

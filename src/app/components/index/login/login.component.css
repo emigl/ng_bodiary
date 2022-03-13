@@ -1,7 +1,44 @@
+.bodiary-title{
+    font-family: 'spantaranregular', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size:4em;
+    text-shadow: 2px 3px 0px #ff9800;
+    /* text-shadow: 2px 3px 0px #ff5722; */
+    user-select: none;
+    position:absolute;
+    top:20px;
+}
+
 .formField{
     width:80%;
 }
+.container-fluid{
+    height: 100vh;
+}
+
+.card-mat{
+    box-shadow: none;
+    background-color: #FFFCFF;
+}
+
+
 
 .loginButton{
     width:39%;
+    height:40px;
+}
+.button-text{
+    font-weight: 700;
+    
+}
+.form-buttons{
+    display: flex;
+    justify-content: center;
+}
+
+input:focus{
+    box-shadow:0px 0px 5px #ff9800;
+}
+
+input{
+    padding:3px 0;
 }

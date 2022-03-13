@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
               private loginService: LoginService) {
                 this.loginForm = this.fb.group({
                   email: ['', Validators.required],
-                  password: ['', Validators.required],
+                  // Mostrar el minimo de longitud en el html
+                  password: ['',[Validators.required, Validators.minLength(6)]],
                   // Si da error puede ser el valor false.
                   remember: [false, Validators.required]
 
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
     
   }
   login():void{
-    
+    this.loading= true;
     // this.loading = true;
     
     //   const user: User = {
