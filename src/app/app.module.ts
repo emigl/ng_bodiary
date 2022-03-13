@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/index/login/login.component';
@@ -16,12 +19,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 import { LoginAdminComponent } from './components/admin/login-admin/login-admin.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { FooterIndexComponent } from './shared/footer-index/footer-index.component';
 
 
 @NgModule({
@@ -31,6 +34,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
     RegisterComponent,
     LoginAdminComponent,
     LoadingComponent,
+    FooterIndexComponent,
     
   ],
   imports: [
@@ -38,6 +42,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     
     // Material
     BrowserAnimationsModule,
@@ -48,6 +53,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
     MatInputModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatDividerModule,
     NgbModule,
   ],
   providers: [
