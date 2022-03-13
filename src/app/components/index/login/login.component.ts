@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private loginService: LoginService) {
                 this.loginForm = this.fb.group({
-                  email: ['', Validators.required],
+                  email: ['', [Validators.required, Validators.email]],
                   // Mostrar el minimo de longitud en el html
                   password: ['',[Validators.required, Validators.minLength(6)]],
                   // Si da error puede ser el valor false.
@@ -26,13 +26,14 @@ export class LoginComponent implements OnInit {
                }
 
   ngOnInit(): void {
+
   }
   getErrorMessage(){
     
   }
   login():void{
-    this.loading= true;
-    // this.loading = true;
+    this.loading = true;
+    
     
     //   const user: User = {
     //     email: this.loginForm.value.email,
