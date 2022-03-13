@@ -1,0 +1,12 @@
+footer{
+    position: absolute;
+    bottom:10px;
+    width:100vw;
+    padding:10px;
+    text-align: center;
+    margin-top:5px;
+}
+.divider{
+    margin-bottom:10px;
+    
+}
