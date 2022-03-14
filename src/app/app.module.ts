@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 import { LoginAdminComponent } from './components/admin/login-admin/login-admin.component';
@@ -54,6 +55,7 @@ import { FooterIndexComponent } from './shared/footer-index/footer-index.compone
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatSnackBarModule,
     NgbModule,
   ],
   providers: [
