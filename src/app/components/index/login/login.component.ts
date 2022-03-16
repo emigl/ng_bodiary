@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         // this.toastr.success('Ya puedes ver los cuestionarios', 'Acceso concedido');
 
         this.loading = false;
-        this.router.navigate(['/register']);
+        this.router.navigate(['/dashboard']);
       }, err => {
         console.log(err);
         var { message } = err.error;

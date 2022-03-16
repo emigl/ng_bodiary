@@ -1,1 +1,59 @@
-<p>register works!</p>
+<section class="container-fluid p-0 d-flex justify-content-center align-content-center">
+    <!-- <img class="background" src="assets/img/dumbbell-m-1280.jpg" alt="Imagen de fondo"> -->
+        <h1 class="text-center mt-3 bodiary-title">Bodiary</h1>
+        <h2 class="textcenter mt-4 bodiary-subtitle">¡Apunta tus entrenamientos!</h2>
+    
+    <div class="row w-100 justify-content-center align-items-center">
+        <mat-card class="col-sm-12 col-md-10 text-center card-mat pt-0">
+            <h2 class="mb-5 iniciar-sesion">Registrarse</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="login()">
+                <mat-form-field class="formField mb-2" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input type="text" class="form-control" id="nameInput" formControlName="name" required matInput>
+                    <mat-error *ngIf="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched">
+                        Introduce un nombre
+                    </mat-error>
+                    
+                </mat-form-field>
+                <mat-form-field class="formField mb-3" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="email" class="form-control" id="emailInput" formControlName="email" required  matInput>
+                    <mat-error *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched">
+                        Introduce un email
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched">
+                        La información introducida debe ser un email
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="formField mb-3" appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" class="form-control" id="password" formControlName="password" required matInput>
+                    <mat-error *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">
+                        Introduce una contraseña
+                    </mat-error>
+                    
+                    <mat-error *ngIf="registerForm.get('password')?.hasError('pattern') && registerForm.get('password')?.touched">
+                        La contraseña debe tener 6 carácteres de longitud e incluir 1 mayúscula, 1 minúscula, 1 número, un carácter especial
+                    </mat-error>
+                </mat-form-field>
+
+                
+                <div class="form-group d-flex justify-content-center">
+                    <!-- El routerLink tiene corchetes cuando el del login no lo tiene -->
+                    <button type="button" mat-raised-button color="primary" [routerLink]="'/index/login'" class="m-1 loginButton"><span class="button-text">Iniciar sesión</span></button>
+    
+                    <button type="submit" mat-stroked-button color="primary" class="m-1 loginButton">
+                        
+                        <span class="button-text" *ngIf="loading == false">Registrarse</span>
+                        <span><app-loading *ngIf="loading"></app-loading></span>
+                    </button>
+
+                </div>
+                
+              </form>
+        
+        </mat-card>
+    </div>
+    
+</section>
+<app-footer-index></app-footer-index>

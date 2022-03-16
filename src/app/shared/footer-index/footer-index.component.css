@@ -1,12 +1,18 @@
 footer{
     position: absolute;
-    bottom:10px;
+    bottom:0px;
     width:100vw;
-    padding:10px;
+    padding-bottom:10px;
     text-align: center;
     margin-top:5px;
+    background-color: #ffeccb;
 }
 .divider{
     margin-bottom:10px;
     
+}
+
+p{
+    margin-bottom:0;
+    font-weight: bold;
 }
