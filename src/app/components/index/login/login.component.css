@@ -13,12 +13,15 @@
     user-select: none;
     position:absolute;
     top:100px;
+    text-decoration: underline;
+    text-decoration-color: #ff9800;
 }
 
 
 .iniciar-sesion{
     text-decoration: underline;
     text-decoration-color: #ff9800;
+    font-style: italic;
 }
 
 .formField{

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
               private loginService: LoginService,
               private snackBar: MatSnackBar) {
                 this.loginForm = this.fb.group({
-                  email: ['admin@gmail.com', [Validators.required, Validators.email]],
+                  email: ['admin@bodiary.com', [Validators.required, Validators.email]],
                   // Mostrar el minimo de longitud en el html
                   password: ['123456',[Validators.required, Validators.minLength(6)]],
                   // Si da error puede ser el valor false.
@@ -54,7 +54,14 @@ export class LoginComponent implements OnInit {
         // this.toastr.success('Ya puedes ver los cuestionarios', 'Acceso concedido');
 
         this.loading = false;
-        this.router.navigate(['/dashboard']);
+        
+        if (data.role == 1){
+          this.router.navigate(['/admin/controlPanel'])
+        }
+        else {
+          this.router.navigate(['/dashboard']);
+        }
+        
       }, err => {
         console.log(err);
         var { message } = err.error;
