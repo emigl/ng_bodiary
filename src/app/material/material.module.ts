@@ -10,14 +10,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [],
   imports: [
   ],
   exports: [
+    // Bootstrap
+    NgbModule,
      // Material
     //  BrowserAnimationsModule,
      MatSliderModule,
@@ -29,8 +31,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
      MatProgressSpinnerModule,
      MatDividerModule,
      MatSnackBarModule,
-     // Bootstrap
-     NgbModule,
+     MatIconModule,
+     MatTableModule
+
   ]
 })
 export class MaterialModule { }

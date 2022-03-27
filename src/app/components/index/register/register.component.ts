@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MyErrorStateMatcher } from 'src/app/Errors/MyErrorStateMatcher';
 import { User } from 'src/app/models/User';
-import { LoginService } from 'src/app/services/login.service';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -14,9 +15,10 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   loading = false;
+  matcher = new MyErrorStateMatcher();
   constructor(private fb: FormBuilder,
               private router: Router,
-              private loginService: LoginService,
+              private registerService: RegisterService,
               private snackBar: MatSnackBar) {
                 this.registerForm = this.fb.group({
                   name: ['', Validators.required],
@@ -26,19 +28,26 @@ export class RegisterComponent implements OnInit {
                   // Si da error puede ser el valor false.
                   confirmPassword: ['']
 
-                }, { validator: this.checkPassword })
+                }, {validators: this.confirmPasswordValidator})
   }
 
   ngOnInit(): void {
-    console.log(this.registerForm.get('password'))
+    
+    
   }
   getErrorMessage() {
     this.snackBar.open('Las credenciales no son válidas, ¡inténtalo de nuevo!', 'Cerrar', {
+      duration: 5000
     })
-    console.log(this.registerForm.get('password'))
+    
+  }
+  getOkMessage() {
+    this.snackBar.open('Se ha creado el usuario con éxito!', 'Cerrar',{
+      duration:5000
+    });
   }
 
-  login(): void {
+  register(): void {
     this.loading = true;
 
 
@@ -48,35 +57,30 @@ export class RegisterComponent implements OnInit {
       name: this.registerForm.value.name
     }
 
-    this.loginService.login(user).subscribe(data => {
+    this.registerService.registerUser(user).subscribe(data => {
 
-      console.log(data);
-      //  Save token to Local Storage
-      this.loginService.setLocalStorage(data.access_token);
-
-      // this.toastr.success('Ya puedes ver los cuestionarios', 'Acceso concedido');
-
+      // console.log(data);
+      
       this.loading = false;
-      this.router.navigate(['/admin/login']);
+      this.getOkMessage();
+      this.router.navigate(['/index/login']);
     }, err => {
-      console.log(err);
+      // console.log(err);
       var { message } = err.error;
-      // this.toastr.error(message, 'Inicio de sesión incorrectos');
+      
       console.log('message', message);
       this.getErrorMessage();
       this.loading = false;
     })
 
   }
-  checkPassword(group: FormGroup):any {
 
-    const pass = group.controls["password"].value;
-    const confirmPass =  group.controls["confirmPassword"].value;
-
-    // notSame se introduce en el objeto FormGroup para validar si las contraseñas son iguales
-    return pass === confirmPass ? null : {notSame: true};
-
-  }
-
-
+  confirmPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password');
+    const confirmPassword = control.get('confirmPassword');
+  
+    return password && confirmPassword && password.value !== confirmPassword.value ? { notSame: true} : null;
+  };
+  
+  
 }

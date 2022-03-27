@@ -51,8 +51,6 @@ export class LoginComponent implements OnInit {
         //  Save token to Local Storage
         this.loginService.setLocalStorage(data.access_token);
 
-        // this.toastr.success('Ya puedes ver los cuestionarios', 'Acceso concedido');
-
         this.loading = false;
         
         if (data.role == 1){
@@ -65,7 +63,6 @@ export class LoginComponent implements OnInit {
       }, err => {
         console.log(err);
         var { message } = err.error;
-        // this.toastr.error(message, 'Inicio de sesión incorrectos');
         console.log('message', message);
         this.getErrorMessage();
         this.loading = false;
