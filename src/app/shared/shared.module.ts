@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterIndexComponent } from './footer-index/footer-index.component';
 import { LoadingComponent } from './loading/loading.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
 import { MaterialModule } from '../material/material.module';
 
 
@@ -12,11 +14,13 @@ import { MaterialModule } from '../material/material.module';
   ],
   imports: [
     CommonModule,
-    MaterialModule,
+    MaterialModule
+    
   ],
   exports: [
     FooterIndexComponent,
-    LoadingComponent
+    LoadingComponent,
+    
   ]
 })
 export class SharedModule { }

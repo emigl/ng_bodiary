@@ -28,11 +28,13 @@ import {MatTableModule} from '@angular/material/table';
      MatFormFieldModule,
      MatInputModule,
      MatCheckboxModule,
-     MatProgressSpinnerModule,
      MatDividerModule,
      MatSnackBarModule,
      MatIconModule,
-     MatTableModule
+     MatTableModule,
+     MatProgressSpinnerModule
+     
+
 
   ]
 })
