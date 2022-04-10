@@ -3,8 +3,8 @@ export interface User{
     role_id?: number,
     name?: string,
     email: string,
-    password: string,
+    password?: string,
     remember_me?: false,
-    isActive?: boolean
+    isActive?: any
 
 }

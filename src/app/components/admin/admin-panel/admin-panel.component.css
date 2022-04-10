@@ -9,3 +9,110 @@
 .id{
     font-weight: bold;
 }
+
+.header{
+    background-color: #fdf7ec;
+    padding:1.2%;
+    border-bottom: solid 1px gray;
+}
+.header>div>div:nth-child(2){
+    text-align:right;
+    
+}
+
+.mat-button{
+    padding: 0 10px;
+}
+/* Boton salir */
+.header>div>div>button{
+    margin-right:4%;
+    font-size:13px;
+    
+}
+.logout-icon{
+    margin-top:5px;
+    font-size: 18px;
+}
+.col-6:nth-child(2){
+    align-self: center;
+}
+
+.info-table{
+    color:rgb(85, 85, 85);
+    font-style: italic;
+}
+/*----------- Tabla ----------- */
+td.mat-cell:last-of-type{
+    padding-right: 0px;
+}
+.mat-header-cell{
+    text-align: center;
+}
+.mat-cell{
+    text-align:center;
+}
+tr>td:nth-child(2),
+tr>td:nth-child(3){
+   text-decoration: underline; 
+}
+.mat-row:hover{
+    cursor: pointer;
+    background-color: gray;
+    transition: 0.3s all;
+}
+
+/* --------------------------- */
+/* ---------------- Media queries -------------------- */
+@media (max-width: 600px) {
+    .container-table{
+        padding: 0px;
+    }
+    /* .header>div>div:nth-child(2){
+        text-align:right;
+        
+    } */
+    /* Boton salir */
+    /* .header>div>div>button{
+        margin-right:20px;
+        font-size:13px;
+    } */
+}
+/* TODO: Cambiar el tamaño de las fuentes de la tabla para que quepa bien en ella. */
+@media (max-width: 372px) {
+    
+    .info-table{
+        font-size: 13px;
+    }
+    /* Boton salir */
+    .header>div>div>button{
+        font-size:13px;
+
+    }
+    /* tabla ID */
+    th.mat-header-cell:first-of-type{
+        padding-left:10px;
+    }
+    td.mat-cell:first-of-type{
+        padding-left: 10px;
+    }
+    /* ---------- */
+    .mat-column-activo{
+        padding-right:8px;
+    }
+
+    td.mat-cell:last-of-type{
+        padding-right:0px;
+    }
+    th.mat-header-cell:last-of-type{
+        padding-right:0px;
+    }
+
+    td.mat-cell{
+        font-size:12px;
+    }
+    .icon{
+        font-size: 20px;
+        
+        /* margin-right:5px; */
+    }
+}

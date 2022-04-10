@@ -1,0 +1,28 @@
+
+
+
+.material-icons{
+    color: #da0000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 1068px){
+
+.detail-section{
+    margin:0 auto;
+    width:50% !important;
+}
+}
