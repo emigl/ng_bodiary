@@ -1,23 +1,5 @@
 
-  <!-- <header class="container-fluid header">
-    <div class="row d-flex">
-      <div class="col-6">
-        <h1>Bienvenido, Admin</h1>
-  
-      </div>
-      <div class="col-6">
-       
-          <button class="btn btn-danger">
-            <span class="material-icons logout-icon">
-            logout
-            </span>
-             </button>
-        
-  
-      </div>
 
-    </div>
-  </header> -->
   <section class="container text-center section-title pt-3 pb-3 ">
     <h2>Lista de usuarios</h2>
   </section>
@@ -50,23 +32,7 @@
           <th mat-header-cell *matHeaderCellDef> Activo </th>
           <td mat-cell routerLink="/admin/details/{{element.id}}" *matCellDef="let element"> {{element.isActive}} </td>
         </ng-container>
-        <!-- <ng-container matColumnDef="Acciones">
-          <th mat-header-cell *matHeaderCellDef> Acciones </th>
-          <td mat-cell *matCellDef="let element"> 
-            <button mat-button routerLink="/admin/details/{{element.id}}">
-              <span class="material-icons icon edit-icon">
-                build
-              </span>
-
-            </button>
-            <button (click)="deleteUser(element.id)" mat-button >
-              <span class="material-icons icon delete-icon">
-              delete
-              </span> 
-
-            </button>
-          </td>
-        </ng-container> -->
+        
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>

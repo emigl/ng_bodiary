@@ -16,7 +16,7 @@
     text-decoration-color: #ff9800;
 }
 
-.iniciar-sesion{
+.registrarse{
     text-decoration: underline;
     text-decoration-color: #ff9800;
 }
@@ -31,21 +31,22 @@
 .card-mat{
     box-shadow: none;
     background-color: #FFFCFF;
+    margin-top:40px;
 }
 
 
 
 .loginButton{
-    width:39%;
+    width:75%;
     height:40px;
 }
-.button-text{
-    font-weight: 700;
-    
+.group-buttons{
+    flex-direction: column;
+    align-items: center;
 }
-.form-buttons{
-    display: flex;
-    justify-content: center;
+
+.button-text{
+    font-weight: 700;  
 }
 
 input:focus{
@@ -57,3 +58,46 @@ input{
 }
 
 
+/*  ---------------Media Queries--------------- */
+@media (min-width: 1030px){
+
+    .mat-form-field{
+        width: 400px !important;
+        margin: 0 auto;
+    }
+    /* .loginButton{
+        width:320px;
+    } */
+    /* form{
+        width:950px;
+        margin: 0 auto;
+    } */
+    .loginButton{
+        width:39%;
+    }
+    .group-buttons{
+        flex-direction: row;
+        
+    }
+    .card-mat{
+        
+        margin-top:0px;
+    }
+    .registrarse{
+        margin-bottom: 3rem !important;
+    }
+    }
+
+@media (min-width: 1250px){
+    form{
+        width:950px;
+        margin: 0 auto;
+    }
+    .group-buttons{
+        width:950px;
+        justify-content: space-evenly;
+    }
+}
+    
+    /* ------------------------- */
+    

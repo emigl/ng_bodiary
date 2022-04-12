@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
       // console.log(err);
       var { message } = err.error;
       
-      console.log('message', message);
+      // console.log('message', message);
       this.getErrorMessage();
       this.loading = false;
     })

@@ -33,7 +33,12 @@ export class LoginComponent implements OnInit {
   }
   getErrorMessage(){
     this.snackBar.open('Las credenciales no son válidas, ¡inténtalo de nuevo!', 'Cerrar', {
-      
+      duration:5000
+    })
+  }
+  getLoginMessage(){
+    this.snackBar.open('Has iniciado sesión, bienvenidx!', 'Cerrar', {
+      duration:5000
     })
   }
   login():void{
@@ -52,7 +57,7 @@ export class LoginComponent implements OnInit {
         this.loginService.setLocalStorage(data.access_token);
 
         this.loading = false;
-        
+        this.getLoginMessage()
         if (data.role == 1){
           this.router.navigate(['/admin/controlPanel'])
         }
@@ -61,10 +66,10 @@ export class LoginComponent implements OnInit {
         }
         
       }, err => {
-        console.log(err);
         var { message } = err.error;
-        console.log('message', message);
+        // console.log('message', message);
         this.getErrorMessage();
+        this.loginForm.controls["password"].reset();
         this.loading = false;
       })
 

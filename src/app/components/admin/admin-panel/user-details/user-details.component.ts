@@ -18,7 +18,6 @@ export class UserDetailsComponent implements OnInit {
   isActive:number = 0;
 
   loadingUser = false;
-  loadingDelete = false;
   loading = false;
 
   constructor(private fb: FormBuilder,
@@ -93,15 +92,12 @@ export class UserDetailsComponent implements OnInit {
 
     let idUser = this.userId;
     if(confirm('¿Estás seguro que quieres eliminar el usuario?')){
-      this.loadingDelete = true;
       this.adminPanelService.deleteUser(idUser).subscribe(data => {
-        this.router.navigate(['/admin/controlPanel']);
         console.log('data', data)
         this.getDeleteMessage();
-        this.loadingDelete = false;
+        this.router.navigate(['/admin/controlPanel']);
       }, err =>{
         this.getErrorMessage(err.error.error);
-        this.loadingDelete = false;
       })
     }
   }

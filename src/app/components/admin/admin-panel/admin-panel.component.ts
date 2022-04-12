@@ -70,11 +70,12 @@ export class AdminPanelComponent implements OnInit {
 
   getErrorMessage(){
     this.snackBar.open('No se ha podido eliminar el usuario', 'Cerrar', {
-      
+      duration: 5000
     })
   }
   getMessage(){
     this.snackBar.open('Se ha eliminado el usuario con éxito.', 'Cerrar', {
+      duration: 5000
 
     })
   }

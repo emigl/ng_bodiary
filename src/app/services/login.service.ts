@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -37,4 +37,15 @@ export class LoginService {
 
     return localStorage.getItem('token') || null;
   }
+
+  logout(token: string | null): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.post(
+      this.appUrl+'auth/logout', 
+    '', {headers: headers});
+  }
+
 }

@@ -38,7 +38,7 @@
 }
 
 .info-table{
-    color:rgb(85, 85, 85);
+    color:#ffa726;
     font-style: italic;
 }
 /*----------- Tabla ----------- */
@@ -57,7 +57,7 @@ tr>td:nth-child(3){
 }
 .mat-row:hover{
     cursor: pointer;
-    background-color: gray;
+    background-color:#ffa726;
     transition: 0.3s all;
 }
 

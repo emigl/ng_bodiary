@@ -40,18 +40,17 @@
             
             <div class="form-group d-flex justify-content-center">
                 <!-- El routerLink tiene corchetes cuando el del login no lo tiene -->
-                <button type="button" mat-raised-button color="accent" [routerLink]="'/admin/controlPanel'" class="m-1 loginButton"><span class="button-text">Atrás</span></button>
+                <button type="button" mat-stroked-button color="accent" [routerLink]="'/admin/controlPanel'" class="m-1 loginButton"><span class="button-text">Atrás</span></button>
     
-                <button type="submit" mat-stroked-button color="primary" class="m-1 loginButton" [disabled]="editUserForm.invalid">
+                <button type="submit" mat-raised-button color="primary" class="m-1 loginButton" [disabled]="editUserForm.invalid">
                     
                     <span class="button-text" *ngIf="loading == false">Aceptar</span>
                     <span><app-loading *ngIf="loading"></app-loading></span>
                 </button>
-                <button type="button" mat-button class="m-1 loginButton" (click)="deleteUser()">
-                    <span class="material-icons" *ngIf="loadingDelete == false">
+                <button type="button" mat-mini-fab color="warn" class="m-1 loginButton" (click)="deleteUser()">
+                    <span class="material-icons">
                         delete
                     </span>
-                    <span><app-loading *ngIf="loadingDelete"></app-loading></span>
                 </button>
     
             </div>
