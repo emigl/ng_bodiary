@@ -79,6 +79,14 @@ input{
     flex-direction: row;
     
 }
+
+}
+@media (min-width: 1250px){
+
+    .group-buttons{
+        width:950px;
+        margin:0 auto;
+    }
 }
 @media(max-width:450px){
     .loginButton{
