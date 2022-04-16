@@ -1,2 +1,67 @@
-<p>dashboard works!</p>
-<button type="button" mat-raised-button color="primary" routerLink="../index/login"class="m-1 loginButton"><span class="button-text">Atrás</span></button>
+
+ 
+  <mat-toolbar color="primary">
+      <div class="title-menu">
+        <button mat-icon-button class="menu-open-icon" *ngIf="sidenav.mode == 'over'" (click)="sidenav.toggle()"  aria-label="icon-button with menu icon">
+            <mat-icon *ngIf="!sidenav.opened">
+                menu
+            </mat-icon>
+            <mat-icon *ngIf="sidenav.opened">
+                close
+            </mat-icon>
+        </button>
+            <span class="toolbar-title">Bodiary</span> 
+        </div>
+        <div class="logout-div">
+            <button mat-icon-button routerLink="../index/login" aria-label="icon-button with logout icon">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+        
+    </mat-toolbar>
+    <mat-sidenav-container>
+        
+        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side">
+            <!-- TODO: Pasar por una variable el nombre del usuario. -->
+            <h4 class="name">John Smith</h4>
+        <!-- ---------------------------------------------------------- -->
+
+            <mat-divider></mat-divider>
+            <button mat-button class="menu-button" id="menu-button" routerLink="training" routerLinkActive="is-active">
+                <span class="mat-button-wrapper">
+                    <mat-icon class="menu-icon" >home</mat-icon>
+                    <span>Entrenamiento</span>
+
+                </span>
+            </button>
+            <button mat-button class="menu-button" routerLink="bodyWeight" routerLinkActive="is-active">
+                <span class="mat-button-wrapper">
+
+                    <mat-icon class="menu-icon">person</mat-icon>
+                    <span>Peso corporal</span>
+                </span>
+            </button>
+            <button mat-button class="menu-button" routerLink="imc" routerLinkActive="is-active">
+                <span class="mat-button-wrapper">
+                    <mat-icon class="menu-icon">info</mat-icon>
+                    <span>IMC</span>
+                    
+                </span>
+            </button>
+    
+            <!-- <mat-divider></mat-divider>
+    
+            <button mat-button class="menu-button">
+                <span class="mat-button-wrapper">
+                    <mat-icon class="menu-icon">help</mat-icon>
+                    <span>Help</span>
+
+                </span>
+            </button> -->
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="content mat-elevation-z8">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>

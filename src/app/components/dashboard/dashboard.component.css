@@ -1,0 +1,139 @@
+/* ---------- Toolbar -------------- */
+
+.mat-toolbar{
+    justify-content: space-between;
+}
+
+.title-menu{
+    display: flex;
+    align-items: center;
+}
+
+
+.toolbar-title{
+    margin-left:10px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* ---------- Toolbar -------------- */
+
+
+/* ------------ Sidenav ------------ */
+mat-sidenav {
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background: #ffffff;
+    color: white;
+    border-radius: 10px;
+    border-color: #ffa726;
+    text-align: center;
+}
+.menu-button:nth-child(1){
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+.menu-button{
+    width: 100%;
+    padding:0;
+    color:#ffa726;
+    padding:5px;
+    transition: 0.3s all;
+}
+.menu-button:hover{
+    background-color: #ffa726;
+    color: #1d1d1d;
+    transition: 0.3s all;
+
+}
+
+.mat-button{
+    border-radius: 0px;
+}
+
+.is-active{
+    background-color: #ffa726;
+    font-weight: bold;
+    color: #1d1d1d;
+    transition: 0.3s all;
+}
+
+.mat-button-wrapper{
+    display: flex;
+    align-items: center;
+}
+.mat-button-wrapper>span{
+    width:80%;
+}
+.menu-icon{
+    padding:0 7px;
+}
+
+.name {
+    margin-top: 20px;
+    font-weight: normal;
+    color: #1d1d1d ;
+}
+
+
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.content {
+    height: calc(100vh - 98px);
+    border-radius: 10px;
+    margin: 16px;
+    margin-left: 32px;
+    /* display: flex; */
+    justify-content: center;
+    /* align-items: center; */
+}
+
+mat-sidenav-container {
+    height: calc(100vh - 65px);
+}
+/* TODO: Terminar el navbar que se ha empezado, darle estilos, poner bien los menús y meter la clase "active" para que se seleccione la sección que esté mostrandose en el momento */
+
+
+ /* .example-container {
+    width: 100%;
+    height: 300px;
+    bottom:1px;
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+   }  
+
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+  } */
+/* ------------ Sidenav ------------ */
+
+
+@media (max-width: 400px){
+    .content {
+        height: calc(100vh - 70px);
+        border-radius: 0px;
+        margin: 0px;
+        margin-left: 0px;
+        
+    }
+    .content.mat-elevation-z8{
+        box-shadow: none;
+    }
+}

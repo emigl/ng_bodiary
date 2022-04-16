@@ -12,7 +12,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
-
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [],
   imports: [
@@ -32,8 +32,8 @@ import {MatTableModule} from '@angular/material/table';
      MatSnackBarModule,
      MatIconModule,
      MatTableModule,
-     MatProgressSpinnerModule
-     
+     MatProgressSpinnerModule,
+     MatSelectModule,
 
 
   ]

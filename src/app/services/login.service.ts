@@ -39,13 +39,20 @@ export class LoginService {
   }
 
   logout(token: string | null): Observable<any>{
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    })
+
+    const headers = this.getAuthHeaders(token);
+    
+    this.rmLocalStorage();
     return this.http.post(
       this.appUrl+'auth/logout', 
     '', {headers: headers});
   }
 
+  getAuthHeaders(token: string | null): HttpHeaders {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return headers;
+  }
 }
