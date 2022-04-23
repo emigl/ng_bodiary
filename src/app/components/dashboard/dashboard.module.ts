@@ -11,6 +11,8 @@ import { DashboardComponent } from './dashboard.component';
 import { TrainingComponent } from './training/training.component';
 import { BodyWeightComponent } from './body-weight/body-weight.component';
 import { ImcComponent } from './imc/imc.component';
+import { PipeModule } from 'src/app/pipes/pipe.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { ImcComponent } from './imc/imc.component';
     MaterialModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatPaginatorModule,
+    PipeModule,
     
   ]
 })

@@ -11,6 +11,8 @@ const routes: Routes = [
     {path: 'bodyWeight', component: BodyWeightComponent},
     {path: 'imc', component: ImcComponent},
 
+    {path: '**', redirectTo: 'training'},
+
   ]},
 
 ];

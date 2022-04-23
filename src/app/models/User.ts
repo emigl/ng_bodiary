@@ -1,4 +1,4 @@
-export interface User{
+export interface User {
     id?: number,
     role_id?: number,
     name?: string,

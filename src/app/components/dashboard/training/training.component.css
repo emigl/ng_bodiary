@@ -30,7 +30,32 @@
     width:95%;
 }
 
+.loading{
+
+    margin: 0 auto;
+    text-align: center;
+}
+
 /* ------------------Tabla---------- */
+
+.table{
+    margin-bottom: 0px;
+}
+.table-info-responsive{
+    font-size:14px;
+    display: none;
+}
+
+
+.table-responsive{
+    margin-top:10px;
+    border-radius:10px;
+}
+thead>tr{
+    background-color: #ff9800;
+    border-top-left-radius: 5px;
+
+}
 
 .row-header-table{
     border-bottom: 1px solid #ff9800;
@@ -45,6 +70,12 @@
 @media (max-width: 400px){
     .container{
         font-size:1rem;
+    }
+
+    .table-info-responsive{
+        display:block;
+        text-align: center;
+        margin-bottom:0px;
     }
     .container-title{
         font-style: italic;

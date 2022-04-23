@@ -4,26 +4,36 @@
   </div>
   <div class="row filter-row mt-4">
     <div class="col-10">
-      <mat-form-field class="filter-select" appearance="fill">
+      <!-- <mat-form-field class="filter-select" appearance="fill" >
         <mat-label>Filtrar por:</mat-label>
-        <mat-select [(value)]="filterSelected">
-          <mat-option>None</mat-option>
-          <mat-option value="option1">Option 1</mat-option>
-          <mat-option value="option2">Option 2</mat-option>
-          <mat-option value="option3">Option 3</mat-option>
+        <mat-select [(ngModel)]="filterSelected">
+          <mat-option [value]="">Todo</mat-option>
+          <mat-option *ngFor="let exercise of trainingExercises" [value]="exercise.name">{{exercise.name}}</mat-option>
+          
+        </mat-select>
+      </mat-form-field> -->
+      <mat-form-field class="filter-select" appearance="fill" >
+        <mat-label>Filtrar por:</mat-label>
+        <mat-select [(ngModel)]="listFilter" (ngModelChange)="performFilter(listFilter)">
+          <mat-option [value]="">Todo</mat-option>
+          <mat-option *ngFor="let exercise of trainingExercises" [value]="exercise.name">{{exercise.name}}</mat-option>
+          
         </mat-select>
       </mat-form-field>
     </div>
     <div class="col-2 col-new mt-2">
-      <!-- <span>Nuevo</span> -->
+      
       <button mat-stroked-button color="primary" class="add-button">
         <mat-icon>post_add</mat-icon>
       </button>
     </div>
   </div>
- <!--  TODO: cambiar el color del borde de la tabla -->
-  <div class="table-responsive table-hover">
-    <table class="table">
+
+  <mat-spinner [diameter]="50" class="spinner mt-5 loading" color="primary" diameter="30" *ngIf="loading" >
+  </mat-spinner>
+ <p class="text-muted table-info-responsive w-100">Desliza hacia la derecha para ver más </p>
+  <div class="table-responsive table-hover" *ngIf="loading == false">
+    <table class="table" >
       <thead>
         <tr>
           <th class="col">Tipo</th>
@@ -35,24 +45,26 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-            <td class="col">Pecho</td>
-            <td class="col">80Kg</td>
-            <td class="col">3</td>
-            <td class="col">12</td>
-            <td class="col">19/04/22</td>
+        
+        <tr *ngFor="let workout of workoutDisplayTable">
+          <td class="col">{{workout.name}}</td>
+          <td class="col">{{workout.weight}}kg</td>
+          <td class="col">{{workout.sets}}</td>
+          <td class="col">{{workout.reps}}</td>
+          <td class="col">{{workout.created_at | date:'dd/MM/YY'}}</td>
+
           
         </tr>
-        <tr>
-            <td class="col">Pecho</td>
-            <td class="col">80Kg</td>
-            <td class="col">3</td>
-            <td class="col">12</td>
-            <td class="col">19/04/22</td>
-          
-        </tr>
+        
       </tbody>
     </table>
   </div>
+  <!-- TODO: Hay que darle estilos al paginator, cambiar idioma de las letras y tal. -->
+  <mat-paginator 
+  [length]="workoutsLength"
+  [pageSize]="5"        
+  (page)="pageEvent = pagination($event)"        
+  aria-label="Select page">       
+  </mat-paginator>
 
 </div>

@@ -125,7 +125,7 @@ mat-sidenav-container {
 /* ------------ Sidenav ------------ */
 
 
-@media (max-width: 400px){
+@media (max-width: 480px){
     .content {
         height: calc(100vh - 70px);
         border-radius: 0px;
