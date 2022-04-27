@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { Workout } from 'src/app/models/Workout';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-training',
   templateUrl: './training.component.html',
@@ -10,17 +12,17 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class TrainingComponent implements OnInit {
 
-  filterSelected = '';
+  loadingForm:boolean  = false;
   loading:boolean = true;
   // Data for table
+  newRegisterForm: FormGroup;
   workoutDisplayTable!: Workout[];
-
   filteredWorkouts: Workout[];
   workouts: Workout[] = [];
+  workoutsLength: number = 0;
   // Data for filter Select
   trainingExercises:any[] = [];
 
-  workoutsLength: number = 0;
   pageEvent!: PageEvent;
 
   _listFilter!: string;
@@ -29,23 +31,32 @@ export class TrainingComponent implements OnInit {
   }
   set listFilter(value: string) {
     this._listFilter = value;
-    // console.log('value', value)
     this.filteredWorkouts = this.listFilter ? this.performFilter(this.listFilter) : this.workouts;
     this.workoutsLength = this.filteredWorkouts.length;
     this.pagination(this.pageEvent);
-    console.log('filteredWorkouts', this.filteredWorkouts)
-    // console.log('this.listFilter', this.listFilter)
-    // console.log('this.performFilter(this.listFilter)', this.performFilter(this.listFilter));
   }
   
- 
 
   constructor(private dashboardService: DashboardService,
-              private snackBar: MatSnackBar) 
-              {
+              private snackBar: MatSnackBar,
+              private modalService: NgbModal,
+              private fb: FormBuilder,
+              ) {
+
                 this.filteredWorkouts = this.workouts;
-                
-              }
+                this.newRegisterForm = this.fb.group({
+                  type: ['', Validators.required],
+                  weight: ['', [Validators.required]],
+                  sets: ['', [Validators.required]],
+
+                  reps: ['', [Validators.required,]],
+                })    
+  }
+
+  // Paginator
+  @ViewChild('paginator', {static:false}) paginator!: MatPaginator;
+
+  @ViewChild("newExercise", {static: false}) newExercise!: TemplateRef<any>;
 
   ngOnInit(): void {
     
@@ -54,6 +65,8 @@ export class TrainingComponent implements OnInit {
     
     
   }
+
+
 
   performFilter(filterBy: string): Workout[] {
     if(filterBy != undefined){
@@ -75,29 +88,22 @@ export class TrainingComponent implements OnInit {
         this.workoutDisplayTable = this.workouts = this.filteredWorkouts = workouts;
         
         this.workoutsLength = this.workouts.length;
-
+        
+        this.paginator ? this.paginator._intl.itemsPerPageLabel = "Registros por página": null;
+        
 
         this.pageEvent  = {
           pageIndex: 0,
-          pageSize: 3,
+          pageSize: 10,
           length: this.workoutsLength
         }
-        // console.log('this.filteredWorkouts', this.filteredWorkouts);
 
         this.pagination(this.pageEvent);
-
-        // console.log('this.Workouts', this.workouts);
-
-        // console.log('this.filteredWorkouts', this.filteredWorkouts);
-        // console.log('loading', this.loading);
-
         this.loading = false;
         
       } else {
-        
         this.snackBar.open(workouts.empty, 'Cerrar');
         this.loading = false;
-
       }
     }, err => {
       console.log('err:', err);
@@ -106,11 +112,11 @@ export class TrainingComponent implements OnInit {
   }
 
   getTrainingExercises():void{
+
     this.dashboardService.getTrainingExercises().subscribe(data => {
 
       this.loading = true;
       this.trainingExercises = data;
-      // console.log('this.trainingExercises', this.trainingExercises);
       this.loading = false;
 
     }, err => {
@@ -121,21 +127,53 @@ export class TrainingComponent implements OnInit {
 
 
   pagination(event: PageEvent): PageEvent{
-    // console.log(event);
-    // console.log('this.workouts', this.workouts);
 
-    // console.log('this.filteredWorkouts', this.filteredWorkouts);
-
-    if(event.pageIndex === 0){
     this.workoutDisplayTable = this.filteredWorkouts.slice(event.pageSize * event.pageIndex, event.pageSize * (event.pageIndex + 1)  )
-
-    }else {
-
-      this.workoutDisplayTable = this.filteredWorkouts.slice(event.pageSize  * event.pageIndex , event.pageSize * (event.pageIndex + 1)  )
-    }
-    
-    // console.log('this.filteredWorkouts', this.filteredWorkouts);
-
     return event;
+
+  }
+
+  openModal(): void {
+    this.modalService.open(this.newExercise, {centered: true, size: "lg"});
+  }
+
+  closeModal(): void {
+    this.modalService.dismissAll();
+  }
+
+  createRegister(): void {
+
+
+    let workoutRegister: Workout = {
+      name: this.newRegisterForm.value.type,
+      weight: this.newRegisterForm.value.weight,
+      sets: this.newRegisterForm.value.sets,
+      reps: this.newRegisterForm.value.reps,
+    }
+
+    this.loadingForm = true;
+    this.dashboardService.createWorkoutRegister(workoutRegister).subscribe(workout => {
+      
+      this.snackBar.open("Se ha agregado el nuevo registro!", 'Cerrar',{
+        duration: 5000,
+      })
+      console.log('loadingForm', this.loadingForm)
+      
+      this.loadingForm = false;
+      
+      this.getWorkouts();
+      this.closeModal();
+      this.newRegisterForm.reset();
+    }, err => {
+      
+      this.snackBar.open('No se ha podido crear el registro, inténtelo de nuevo' , 'Cerrar',{
+        duration: 5000
+      })
+      this.closeModal();
+      
+    })
+    
+
+
   }
 }

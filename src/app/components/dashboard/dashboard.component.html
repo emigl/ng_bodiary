@@ -2,7 +2,7 @@
  
   <mat-toolbar color="primary">
       <div class="title-menu">
-        <button mat-icon-button class="menu-open-icon" *ngIf="sidenav.mode == 'over'" (click)="sidenav.toggle()"  aria-label="icon-button with menu icon">
+        <button mat-icon-button class="menu-open-icon" id="menu-open-icon" *ngIf="sidenav.mode == 'over'" (click)="toggleSideNav()"  aria-label="icon-button with menu icon">
             <mat-icon *ngIf="!sidenav.opened">
                 menu
             </mat-icon>
@@ -23,25 +23,25 @@
         
         <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side">
             <!-- TODO: Pasar por una variable el nombre del usuario. -->
-            <h4 class="name">John Smith</h4>
+            <h4 class="name">Emilio</h4>
         <!-- ---------------------------------------------------------- -->
 
             <mat-divider></mat-divider>
-            <button mat-button class="menu-button" id="menu-button" routerLink="training" routerLinkActive="is-active">
+            <button mat-button class="menu-button" id="menu-button" routerLink="training" routerLinkActive="is-active" (click)="toggleSideNav()">
                 <span class="mat-button-wrapper">
                     <mat-icon class="menu-icon" >home</mat-icon>
                     <span>Entrenamiento</span>
 
                 </span>
             </button>
-            <button mat-button class="menu-button" routerLink="bodyWeight" routerLinkActive="is-active">
+            <button mat-button class="menu-button" routerLink="bodyWeight" routerLinkActive="is-active" (click)="toggleSideNav()">
                 <span class="mat-button-wrapper">
 
                     <mat-icon class="menu-icon">person</mat-icon>
                     <span>Peso corporal</span>
                 </span>
             </button>
-            <button mat-button class="menu-button" routerLink="imc" routerLinkActive="is-active">
+            <button mat-button class="menu-button" routerLink="imc" routerLinkActive="is-active" (click)="toggleSideNav()">
                 <span class="mat-button-wrapper">
                     <mat-icon class="menu-icon">info</mat-icon>
                     <span>IMC</span>
@@ -49,15 +49,6 @@
                 </span>
             </button>
     
-            <!-- <mat-divider></mat-divider>
-    
-            <button mat-button class="menu-button">
-                <span class="mat-button-wrapper">
-                    <mat-icon class="menu-icon">help</mat-icon>
-                    <span>Help</span>
-
-                </span>
-            </button> -->
         </mat-sidenav>
         <mat-sidenav-content>
             <div class="content mat-elevation-z8">

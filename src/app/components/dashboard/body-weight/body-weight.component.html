@@ -1,1 +1,95 @@
-<p>body-weight works!</p>
+<div class="container">
+  <div class="row">
+    <h2 class="container-title text-center mt-4">Seguimiento de peso corporal</h2>
+  </div>
+  
+  <div class="row">
+    <div class="col justify-content-center text-center col-new mt-2">
+      <button mat-stroked-button color="primary" class="add-button w-75" (click)="openModal()">
+        <strong>
+          Registrar Peso
+        </strong>
+        <mat-icon>post_add</mat-icon>
+      </button>
+    </div>
+  
+  <div class="row mt-4" *ngIf="!loading">
+      <h3 class="text-center">Actual</h3>
+      <h3 class="actual-weight">{{actualWeight}}</h3>
+      <h3 class="text-center">Kg</h3>
+    </div>
+</div>
+
+
+  <mat-spinner [diameter]="50" class="spinner mt-5 loading-table" color="primary" diameter="30" *ngIf="loading">
+  </mat-spinner>
+  <h3 class="mt-4 text-center" *ngIf="loading == false && bodyWeights.length <= 0">No hay registros de
+  peso, crea uno!</h3>
+
+<div class="table-responsive table-hover" *ngIf="loading == false && bodyWeights.length !== 0">
+    
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col">Peso</th>
+        <th class="col">Fecha</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let workout of bodyWeightsPaginated">
+          <td class="col">{{workout.weight}}kg</td>
+        <td class="col">{{workout.created_at | date:'dd/MM/YY'}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+  
+</div>
+
+<div [hidden]="loading || bodyWeights.length === 0">
+  <mat-paginator #paginator [length]="bodyWeightsLength" [pageSize]="5" (page)="pageEvent = pagination($event)"
+    aria-label="Select page">
+  </mat-paginator>
+
+</div>
+
+
+</div>
+
+<!--  Modal create new exercise register -->
+<ng-template #newWeight let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title text-center" id="modal-basic-title">Nuevo registro de entrenamiento</h4>
+
+  </div>
+  <form [formGroup]="newRegisterForm" (ngSubmit)="createRegister()">
+    <div class="modal-body">
+
+      <div class="row">
+
+        <div class="col">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Peso</mat-label>
+            <input type="number" [min]="1" [max]="350" formControlName="weight" matInput>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+      <button mat-stroked-button color="primary" type="submit" class="btn-save mr-3"
+        [disabled]="newRegisterForm.invalid">
+        <span *ngIf="loadingForm == false">
+          Guardar
+        </span>
+        <span *ngIf="loadingForm == true">
+          <mat-spinner class="button-spinner" [diameter]="30"></mat-spinner>
+        </span>
+      </button>
+    </div>
+  </form>
+</ng-template>

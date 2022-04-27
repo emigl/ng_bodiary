@@ -30,7 +30,8 @@
     width:95%;
 }
 
-.loading{
+.loading-table, 
+.button-spinner{
 
     margin: 0 auto;
     text-align: center;
@@ -46,7 +47,9 @@
     display: none;
 }
 
-
+td.col{
+    background-color: #ffffff ;
+}
 .table-responsive{
     margin-top:10px;
     border-radius:10px;
@@ -54,7 +57,12 @@
 thead>tr{
     background-color: #ff9800;
     border-top-left-radius: 5px;
-
+}
+thead>tr>th{
+    font-size: 18px;
+}
+tbody>tr>td{
+    font-size:18px;
 }
 
 .row-header-table{
@@ -64,6 +72,19 @@ thead>tr{
     text-align: center;
 }
 /* ------------------Tabla---------- */
+
+
+/*  ------------- Modal ------------------- */
+.modal-header{
+    justify-content: center;
+}
+.btn-close,
+.btn-save {
+    height: 40px;
+    width:100px;
+}
+/*  ------------- Modal ------------------- */
+
 
 /*  --------- Media queries ---------------- */
 
@@ -85,6 +106,31 @@ thead>tr{
     }
     
 }
+
+@media (max-width:460px){
+    .modal-body>.row>.col{
+        text-align: center;
+    }
+    .modal-body>.row>.col>.mat-form-field{
+        width:90%;
+    }
+    thead>tr>th{
+        font-size: 16px;
+    }
+    tbody>tr>td{
+        font-size:15px;
+    }
+}
+@media (min-width:461px){
+    
+    .modal-body>.row>.col>.mat-form-field{
+        width:90%;
+    }
+}
+
+
+
+
 @media (min-width: 950px){
     .add-button{
         width:70%;

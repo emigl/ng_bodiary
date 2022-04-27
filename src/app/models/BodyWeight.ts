@@ -1,3 +1,4 @@
 export interface BodyWeight {
-    weight: number
+    weight: number,
+    created_at?: string
 }

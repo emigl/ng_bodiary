@@ -3,5 +3,5 @@ export interface Workout {
     weight: number,
     sets: number,
     reps: number,
-    created_at: string
+    created_at?: string
 }

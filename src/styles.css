@@ -40,3 +40,6 @@ body {
  .row{
     --bs-gutter-x: 0rem !important;
  }
+
+ /* For mat-select issues(dont appear in modal) */
+ .cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 9999!important; }

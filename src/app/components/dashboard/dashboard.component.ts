@@ -30,11 +30,27 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.focusMonitor.stopMonitoring(document.getElementById('menu-button')!);
+    this.focusMonitor.stopMonitoring(document.getElementById('menu-open-icon')!);
+
     this.cdref.detectChanges();
   }
   
   ngOnInit(): void {
     
+  }
+
+  toggleSideNav(): void {
+    this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
+      if (res.matches) {
+        this.sidenav.toggle();
+        this.focusMonitor.stopMonitoring(document.getElementById('menu-button')!);
+        this.focusMonitor.stopMonitoring(document.getElementById('menu-open-icon')!);
+        
+      } else {
+
+      }
+    });
+    this.cdref.detectChanges();
   }
 
 }
