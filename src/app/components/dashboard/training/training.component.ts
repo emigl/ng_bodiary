@@ -157,7 +157,6 @@ export class TrainingComponent implements OnInit {
       this.snackBar.open("Se ha agregado el nuevo registro!", 'Cerrar',{
         duration: 5000,
       })
-      console.log('loadingForm', this.loadingForm)
       
       this.loadingForm = false;
       

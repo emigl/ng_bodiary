@@ -58,7 +58,6 @@ export class BodyWeightComponent implements OnInit {
       }
       this.pagination(this.pageEvent);
 
-      console.log('bodyWeightsData', bodyWeightsData);
       this.loading = false;
       
     }, err =>  {
@@ -78,7 +77,6 @@ export class BodyWeightComponent implements OnInit {
       this.snackBar.open("Se ha agregado el nuevo registro!", 'Cerrar',{
         duration: 5000,
       })
-      console.log('loadingForm', this.loadingForm)
       
       this.loadingForm = false;
       

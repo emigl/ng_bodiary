@@ -1,0 +1,140 @@
+
+.container-title{
+    font-style: italic;
+    color:#3b3b3b;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #ff9800;
+}
+
+
+.actual-weight{
+    color:#ff9800;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*---------------- Loading------------- */
+
+.loading-table, 
+.button-spinner{
+
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*---------------- Loading-------------- */
+
+/*---------------- Actual IMC -------------- */
+.infrapeso,
+.peso-normal,
+.sobrepeso,
+.obesidad{
+    font-weight: bold;
+}
+.infrapeso{
+    color:#fec001;
+}
+.peso-normal{
+    color:#00ff00;
+}
+.sobrepeso{
+    color: #fd66cc;
+}
+.obesidad{
+   color: #ff3300;
+}
+
+
+/*---------------- Actual IMC -------------- */
+
+/* ------------------Tabla---------- */
+
+.table{
+    margin-bottom: 0px;
+}
+
+td.col{
+    background-color: #ffffff ;
+}
+.table-responsive{
+    margin-top:10px;
+    border-radius:10px;
+}
+thead>tr{
+    background-color: #ff9800;
+    border-top-left-radius: 5px;
+
+}
+thead>tr>th{
+    font-size: 18px;
+}
+tbody>tr>td{
+    font-size:18px;
+}
+.row-header-table{
+    border-bottom: 1px solid #ff9800;
+}
+.table-responsive{
+    text-align: center;
+}
+/* ------------------Tabla---------- */
+
+
+/*  ------------- Modal ------------------- */
+.modal-header{
+    justify-content: center;
+}
+.btn-close,
+.btn-save {
+    height: 40px;
+    width:100px;
+}
+/*  ------------- Modal ------------------- */
+
+/*  --------- Media queries ---------------- */
+
+@media (max-width: 400px){
+    .container{
+        font-size:1rem;
+    }
+
+    .table-info-responsive{
+        display:block;
+        text-align: center;
+        margin-bottom:0px;
+    }
+    .container-title{
+        font-style: italic;
+        color:#3b3b3b;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    
+}
+
+@media (max-width:460px){
+    .modal-body>.row>.col{
+        text-align: center;
+    }
+    .modal-body>.row>.col>.mat-form-field{
+        width:90%;
+    }
+}
+
+@media (min-width:461px){
+    
+    .modal-body>.row>.col>.mat-form-field{
+        width:90%;
+    }
+}
+
+@media (min-width: 950px){
+    .add-button{
+        width:70%;
+        height:50px;
+    }
+}
+
+/*  --------- Media queries ---------------- */

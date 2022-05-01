@@ -1,3 +1,4 @@
 export interface BodyImc {
-    imc: number
+    imc: number,
+    created_at?: string
 }
