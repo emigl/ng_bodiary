@@ -65,7 +65,6 @@ export class DashboardComponent implements OnInit {
     let token = this.authService.getLocalStorageToken();
 
     this.authService.logout(token).subscribe(response => {
-      console.log('response', response)
       this.authService.rmLocalStorage();
     }, err => {
       console.log('err', err)

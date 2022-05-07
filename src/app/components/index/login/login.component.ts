@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
       
       this.authService.login(user).subscribe(data => {
 
-        console.log(data);
         //  Save token to Local Storage
         this.authService.setLocalStorageToken(data.access_token);
         // Save user to Local Storage

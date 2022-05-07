@@ -47,7 +47,6 @@ export class BodyWeightComponent implements OnInit {
     this.dashboardService.getBodyWeights().subscribe(bodyWeightsData => {
       
       this.loading = true;
-      console.log('this.bodyWeights', this.bodyWeights)
       if(!bodyWeightsData.empty){
         this.bodyWeights = bodyWeightsData;
         this.bodyWeightsLength = this.bodyWeights?.length || 0;

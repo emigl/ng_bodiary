@@ -86,7 +86,6 @@ export class TrainingComponent implements OnInit {
         this.workoutDisplayTable = this.workouts = this.filteredWorkouts = workouts;
         
         this.workoutsLength = this.workouts.length;
-        console.log('this.workoutDisplayTable', this.workoutDisplayTable)
         this.paginator ? this.paginator._intl.itemsPerPageLabel = "Registros por página": null;
         
 

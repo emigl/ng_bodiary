@@ -72,10 +72,8 @@ export class UserDetailsComponent implements OnInit {
     }
     this.loading = true;
     this.adminPanelService.updateUser(this.userId, user).subscribe(data => {
-      console.log('data', data)
       if(data.ok){
         this.router.navigate(['/admin/controlPanel']);
-        console.log('data', data)
         this.getOkMessage();
       }
       
@@ -93,7 +91,6 @@ export class UserDetailsComponent implements OnInit {
     let idUser = this.userId;
     if(confirm('¿Estás seguro que quieres eliminar el usuario?')){
       this.adminPanelService.deleteUser(idUser).subscribe(data => {
-        console.log('data', data)
         this.getDeleteMessage();
         this.router.navigate(['/admin/controlPanel']);
       }, err =>{

@@ -17,7 +17,6 @@ export class AuthAdminGuard implements CanActivate {
       if(this.authService.getLocalStorageUsername() != null){
 
         if(this.authService.getLocalStorageUsername() != 'bodiadmin'){
-          console.log('Ruta protegida');
           this.router.navigate(['/dashboard']);
         }
       }else{
