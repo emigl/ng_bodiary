@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
     
   }
   getErrorMessage() {
-    this.snackBar.open('Las credenciales no son válidas, ¡inténtalo de nuevo!', 'Cerrar', {
+    this.snackBar.open('Ha habido un error, ¡inténtalo de nuevo!', 'Cerrar', {
       duration: 5000
     })
     
@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
       // console.log(err);
       var { message } = err.error;
       
-      // console.log('message', message);
+      console.log('message', message);
       this.getErrorMessage();
       this.loading = false;
     })

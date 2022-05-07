@@ -12,24 +12,21 @@
         </button>
             <span class="toolbar-title">Bodiary</span> 
         </div>
-        <div class="logout-div">
-            <button mat-icon-button routerLink="../index/login" aria-label="icon-button with logout icon">
-                <mat-icon>logout</mat-icon>
-            </button>
-        </div>
+        
         
     </mat-toolbar>
     <mat-sidenav-container>
         
         <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side">
             <!-- TODO: Pasar por una variable el nombre del usuario. -->
-            <h4 class="name">Emilio</h4>
+            <h4 class="name">{{username}}</h4>
         <!-- ---------------------------------------------------------- -->
 
             <mat-divider></mat-divider>
+
             <button mat-button class="menu-button" id="menu-button" routerLink="training" routerLinkActive="is-active" (click)="toggleSideNav()">
                 <span class="mat-button-wrapper">
-                    <mat-icon class="menu-icon" >home</mat-icon>
+                    <mat-icon class="menu-icon" >timeline</mat-icon>
                     <span>Entrenamiento</span>
 
                 </span>
@@ -43,12 +40,28 @@
             </button>
             <button mat-button class="menu-button" routerLink="imc" routerLinkActive="is-active" (click)="toggleSideNav()">
                 <span class="mat-button-wrapper">
-                    <mat-icon class="menu-icon">info</mat-icon>
+                    <mat-icon class="menu-icon">lens_blur</mat-icon>
                     <span>IMC</span>
                     
                 </span>
             </button>
-    
+
+            <mat-divider></mat-divider>
+
+            <button mat-button class="menu-button" routerLink="faq" routerLinkActive="is-active" (click)="toggleSideNav()">
+                <span class="mat-button-wrapper">
+                    <mat-icon class="menu-icon">question_answer</mat-icon>
+                    <span>FAQ</span>
+                    
+                </span>
+            </button>
+            <button mat-button class="menu-button logout-button"  (click)="logout()">
+                <span class="mat-button-wrapper">
+                    <mat-icon class="menu-icon">logout</mat-icon>
+                    <span>Cerrar sesión</span>
+                    
+                </span>
+            </button>
         </mat-sidenav>
         <mat-sidenav-content>
             <div class="content mat-elevation-z8">

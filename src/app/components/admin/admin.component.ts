@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -11,17 +11,19 @@ import { LoginService } from 'src/app/services/login.service';
 export class AdminComponent implements OnInit {
 
   constructor(private router: Router,
-              private loginService: LoginService,
+              private authService: AuthService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
   logout(){
-    let token = this.loginService.getToken();
-    this.loginService.logout(token).subscribe(data => {
+    let token = this.authService.getLocalStorageToken();
+    this.authService.logout(token).subscribe(data => {
       
       this.getLogoutMessage(data.ok);
+      this.authService.rmLocalStorage();
+
       this.router.navigate(["/index"]);
 
     });

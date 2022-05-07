@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +16,12 @@ export class LoginComponent implements OnInit {
   loading = false;
   constructor(private fb: FormBuilder,
               private router: Router,
-              private loginService: LoginService,
+              private authService: AuthService,
               private snackBar: MatSnackBar) {
                 this.loginForm = this.fb.group({
-                  email: ['admin@bodiary.com', [Validators.required, Validators.email]],
+                  email: ['emilio.gl1998@gmail.com', [Validators.required, Validators.email]],
                   // Mostrar el minimo de longitud en el html
-                  password: ['123456',[Validators.required, Validators.minLength(6)]],
+                  password: ['Akirion_312.',[Validators.required, Validators.minLength(6)]],
                   // Si da error puede ser el valor false.
                   remember: [false, Validators.required]
 
@@ -41,23 +41,28 @@ export class LoginComponent implements OnInit {
       duration:5000
     })
   }
+
   login():void{
     this.loading = true;
-    
     
       const user: User = {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
       }
       
-      this.loginService.login(user).subscribe(data => {
+      this.authService.login(user).subscribe(data => {
 
         console.log(data);
         //  Save token to Local Storage
-        this.loginService.setLocalStorage(data.access_token);
-
+        this.authService.setLocalStorageToken(data.access_token);
+        // Save user to Local Storage
+        let user:string = data.user.name;
+        this.authService.setLocalStorageUsername(user);
+        sessionStorage.setItem('role', data.role_id);
         this.loading = false;
-        this.getLoginMessage()
+        
+        this.getLoginMessage();
+        
         if (data.role == 1){
           this.router.navigate(['/admin/controlPanel'])
         }
@@ -67,12 +72,11 @@ export class LoginComponent implements OnInit {
         
       }, err => {
         var { message } = err.error;
-        // console.log('message', message);
+        console.log('message', message);
         this.getErrorMessage();
         this.loginForm.controls["password"].reset();
+
         this.loading = false;
       })
-
-}
-
+    }
 }

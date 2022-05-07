@@ -2,6 +2,9 @@ import { FocusMonitor } from '@angular/cdk/a11y';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,13 +13,17 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class DashboardComponent implements OnInit {
 
+  username:string = '';
   
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   
   constructor(private observer: BreakpointObserver,
               private cdref: ChangeDetectorRef,
-              private focusMonitor: FocusMonitor) {
+              private focusMonitor: FocusMonitor,
+              private authService: AuthService,
+              private router: Router,
+              private snackBar: MatSnackBar) {
     
   }
   ngAfterViewInit(){
@@ -31,12 +38,12 @@ export class DashboardComponent implements OnInit {
     });
     this.focusMonitor.stopMonitoring(document.getElementById('menu-button')!);
     this.focusMonitor.stopMonitoring(document.getElementById('menu-open-icon')!);
-
+    
+    this.getUser();
     this.cdref.detectChanges();
   }
   
   ngOnInit(): void {
-    
   }
 
   toggleSideNav(): void {
@@ -51,6 +58,29 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.cdref.detectChanges();
+  }
+
+  logout(): void {
+
+    let token = this.authService.getLocalStorageToken();
+
+    this.authService.logout(token).subscribe(response => {
+      console.log('response', response)
+      this.authService.rmLocalStorage();
+    }, err => {
+      console.log('err', err)
+    })
+    if(token) {
+      this.snackBar.open('¡Has cerrado sesión con éxito!', 'Cerrar', {
+        duration: 5000
+      })
+    }
+    this.router.navigate(['/index/login'])
+  }
+
+  // Recupera el nombre de usuario para introducirlo en el menú
+  getUser(): void {
+    this.username = this.authService.getLocalStorageUsername() || '';
   }
 
 }

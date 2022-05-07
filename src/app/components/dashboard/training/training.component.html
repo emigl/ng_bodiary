@@ -25,11 +25,11 @@
 
   <mat-spinner [diameter]="50" class="spinner mt-5 loading-table" color="primary" diameter="30" *ngIf="loading">
   </mat-spinner>
-  <h3 class="mt-4 text-center" *ngIf="loading == false && workoutDisplayTable.length <= 0">No hay registros de entrenamiento, crea uno!</h3>
-  <p class="text-muted table-info-responsive w-100" *ngIf="loading == false && workoutDisplayTable.length !== 0">
+  <h3 class="mt-4 text-center" *ngIf="loading == false && workoutDisplayTable === undefined || filteredWorkouts?.length === 0">No hay registros de entrenamiento, crea uno!</h3>
+  <p class="text-muted table-info-responsive w-100" *ngIf="loading == false && workoutDisplayTable !== undefined">
     Desliza hacia la derecha para ver más 
   </p>
-  <div class="table-responsive table-hover" *ngIf="loading == false && workoutDisplayTable.length !== 0">
+  <div class="table-responsive table-hover" *ngIf="loading == false && workoutDisplayTable !== undefined && filteredWorkouts?.length != 0">
     <table class="table" >
       <thead>
         <tr>
@@ -56,7 +56,7 @@
       </tbody>
     </table>
   </div>
-  <div [hidden]="loading || workoutDisplayTable.length === 0">
+  <div [hidden]="loading || workoutDisplayTable === undefined || filteredWorkouts?.length === 0">
     <mat-paginator  
     #paginator
     [length]="workoutsLength"

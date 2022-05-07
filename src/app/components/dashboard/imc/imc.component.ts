@@ -18,8 +18,8 @@ export class ImcComponent implements OnInit {
 
   // Data for table
   newRegisterForm!: FormGroup;
-  bodyImcs!: BodyImc[];
-  bodyImcsPaginated!: BodyImc[];
+  bodyImcs: BodyImc[] = [];
+  bodyImcsPaginated?: BodyImc[];
   actualImc!: number;
   bodyImcsLength!: number;
 
@@ -54,9 +54,11 @@ export class ImcComponent implements OnInit {
     this.dashboardService.getBodyImcs().subscribe(bodyImcData => {
       
       this.loading = true;
-      this.bodyImcs = bodyImcData;
-      this.bodyImcsLength = this.bodyImcs.length;
-      this.actualImc = this.bodyImcs[0].imc;
+      if(!bodyImcData.empty){
+        this.bodyImcs = bodyImcData;
+        this.bodyImcsLength = this.bodyImcs.length;
+        this.actualImc = this.bodyImcs[0].imc;
+      }
       this.paginator ? this.paginator._intl.itemsPerPageLabel = "Registros por página": null;
       this.pageEvent  = {
         pageIndex: 0,
@@ -78,14 +80,15 @@ export class ImcComponent implements OnInit {
     let weight: number = this.newRegisterForm.get('weight')?.value;
     let imc: number = 0;
 
-    if(this.newRegisterForm.get('weight')?.dirty && this.newRegisterForm.get('height')?.dirty){
+    if (this.newRegisterForm.get('weight')?.dirty && this.newRegisterForm.get('height')?.dirty) {
 
       imc = weight / Math.pow(height, 2);
     }
 
-    if(imc < 70 && imc >= 10){
+    if (imc < 70 && imc >= 10) {
       this.calculatedImc = parseFloat(imc.toFixed(2));
-    } else{
+    } 
+    else {
       this.calculatedImc = 0;
     }
   }

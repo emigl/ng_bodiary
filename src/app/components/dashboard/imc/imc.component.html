@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2 class="container-title text-center mt-4">Seguimiento de Índice de masa corporal</h2>
+    <h2 class="container-title text-center mt-4">Seguimiento de índice de masa corporal</h2>
   </div>
 
   <div class="row">
@@ -13,7 +13,7 @@
       </button>
     </div>
 
-    <div class="row mt-4" *ngIf="!loading">
+    <div class="row mt-4" *ngIf="!loading && actualImc">
       <h3 class="text-center">Actual</h3>
       <span class="text-center infrapeso" *ngIf="actualImc < 18.5">Infrapeso</span>
       <span class="text-center peso-normal" *ngIf="actualImc > 18.6 && actualImc < 24.9 ">Peso normal</span>

@@ -16,8 +16,8 @@ export class TrainingComponent implements OnInit {
   loading:boolean = true;
   // Data for table
   newRegisterForm: FormGroup;
-  workoutDisplayTable!: Workout[];
-  filteredWorkouts: Workout[];
+  workoutDisplayTable?: Workout[];
+  filteredWorkouts?: Workout[];
   workouts: Workout[] = [];
   workoutsLength: number = 0;
   // Data for filter Select
@@ -32,7 +32,7 @@ export class TrainingComponent implements OnInit {
   set listFilter(value: string) {
     this._listFilter = value;
     this.filteredWorkouts = this.listFilter ? this.performFilter(this.listFilter) : this.workouts;
-    this.workoutsLength = this.filteredWorkouts.length;
+    this.workoutsLength = this.filteredWorkouts.length | 0;
     this.pagination(this.pageEvent);
   }
   
@@ -43,7 +43,7 @@ export class TrainingComponent implements OnInit {
               private fb: FormBuilder,
               ) {
 
-                this.filteredWorkouts = this.workouts;
+                
                 this.newRegisterForm = this.fb.group({
                   type: ['', Validators.required],
                   weight: ['', [Validators.required]],
@@ -66,8 +66,6 @@ export class TrainingComponent implements OnInit {
     
   }
 
-
-
   performFilter(filterBy: string): Workout[] {
     if(filterBy != undefined){
       filterBy = filterBy.toLocaleLowerCase();
@@ -88,7 +86,7 @@ export class TrainingComponent implements OnInit {
         this.workoutDisplayTable = this.workouts = this.filteredWorkouts = workouts;
         
         this.workoutsLength = this.workouts.length;
-        
+        console.log('this.workoutDisplayTable', this.workoutDisplayTable)
         this.paginator ? this.paginator._intl.itemsPerPageLabel = "Registros por página": null;
         
 
@@ -128,7 +126,9 @@ export class TrainingComponent implements OnInit {
 
   pagination(event: PageEvent): PageEvent{
 
-    this.workoutDisplayTable = this.filteredWorkouts.slice(event.pageSize * event.pageIndex, event.pageSize * (event.pageIndex + 1)  )
+    this.workoutDisplayTable = this.workoutDisplayTable ?
+    this.filteredWorkouts?.slice(event.pageSize * event.pageIndex, event.pageSize * (event.pageIndex + 1)) :
+    undefined;
     return event;
 
   }
@@ -142,7 +142,6 @@ export class TrainingComponent implements OnInit {
   }
 
   createRegister(): void {
-
 
     let workoutRegister: Workout = {
       name: this.newRegisterForm.value.type,
@@ -163,6 +162,7 @@ export class TrainingComponent implements OnInit {
       this.getWorkouts();
       this.closeModal();
       this.newRegisterForm.reset();
+      this.listFilter = '';
     }, err => {
       
       this.snackBar.open('No se ha podido crear el registro, inténtelo de nuevo' , 'Cerrar',{

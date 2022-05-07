@@ -37,18 +37,13 @@
                
                 
                 
-                <div class="mb-5 form-check">
-                  <mat-checkbox formControlName="remember" color="primary" class="mr-3">
-
-                      <label class="form-check-label">Recuérdame</label>
-                  </mat-checkbox>
-                </div>
+               
 
                 
                 <div class="row group-buttons form-group d-flex justify-content-center">
-                    <button type="button" mat-stroked-button color="primary" routerLink="../register"class="m-1 loginButton"><span class="button-text">Registrarse</span></button>
+                    <button type="button" mat-stroked-button routerLink="../register"class="m-1 loginButton"><span class="button-text">Registrarse</span></button>
     
-                    <button type="submit" mat-raised-button color="primary" class="m-1 loginButton" [disabled]="loginForm.invalid">
+                    <button type="submit" mat-stroked-button color="primary" class="m-1 loginButton" [disabled]="loginForm.invalid">
                         
                         <span class="button-text" *ngIf="loading == false">Entrar</span>
                         <span><app-loading *ngIf="loading"></app-loading></span>

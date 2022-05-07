@@ -13,7 +13,8 @@
 .toolbar-title{
     margin-left:10px;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
 }
 
 /* ---------- Toolbar -------------- */
@@ -41,6 +42,7 @@ mat-sidenav {
     width: 100%;
     padding:0;
     color:#ffa726;
+    font-weight: bold;
     padding:5px;
     transition: 0.3s all;
 }
@@ -48,7 +50,6 @@ mat-sidenav {
     background-color: #ffa726;
     color: #1d1d1d;
     transition: 0.3s all;
-
 }
 
 .mat-button{
@@ -73,6 +74,16 @@ mat-sidenav {
     padding:0 7px;
 }
 
+.logout-button{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.logout-button:hover{
+    background-color: #ec0000;
+    color: #ebe9e9;
+    transition: 0.3s all;
+}
 .name {
     margin-top: 20px;
     font-weight: normal;

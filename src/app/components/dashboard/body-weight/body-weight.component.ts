@@ -17,9 +17,9 @@ export class BodyWeightComponent implements OnInit {
   loading:boolean = true;
   // Data for table
   newRegisterForm!: FormGroup;
-  bodyWeights!: BodyWeight[];
+  bodyWeights: BodyWeight[] = [];
   bodyWeightsPaginated!: BodyWeight[];
-  actualWeight!: number;
+  actualWeight?: number;
   bodyWeightsLength!: number;
   pageEvent!: PageEvent;
 
@@ -47,9 +47,13 @@ export class BodyWeightComponent implements OnInit {
     this.dashboardService.getBodyWeights().subscribe(bodyWeightsData => {
       
       this.loading = true;
-      this.bodyWeights = bodyWeightsData;
-      this.bodyWeightsLength = this.bodyWeights.length;
-      this.actualWeight = this.bodyWeights[0].weight;
+      console.log('this.bodyWeights', this.bodyWeights)
+      if(!bodyWeightsData.empty){
+        this.bodyWeights = bodyWeightsData;
+        this.bodyWeightsLength = this.bodyWeights?.length || 0;
+        this.actualWeight = this.bodyWeights[0].weight || 0;
+
+      }
       this.paginator ? this.paginator._intl.itemsPerPageLabel = "Registros por página": null;
       this.pageEvent  = {
         pageIndex: 0,
@@ -97,6 +101,7 @@ export class BodyWeightComponent implements OnInit {
 
     this.bodyWeightsPaginated = this.bodyWeights.slice(event.pageSize * event.pageIndex, event.pageSize * (event.pageIndex + 1)  )
     return event;
+
   }
 
 
