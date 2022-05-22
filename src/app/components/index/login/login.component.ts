@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
               private authService: AuthService,
               private snackBar: MatSnackBar) {
                 this.loginForm = this.fb.group({
-                  email: ['emilio.gl1998@gmail.com', [Validators.required, Validators.email]],
+                  email: ['', [Validators.required, Validators.email]],
                   // Mostrar el minimo de longitud en el html
-                  password: ['Akirion_312.',[Validators.required, Validators.minLength(6)]],
+                  password: ['',[Validators.required, Validators.minLength(6)]],
                   // Si da error puede ser el valor false.
                   remember: [false, Validators.required]
 
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
         
       }, err => {
         var { message } = err.error;
-        console.log('message', message);
+        // console.log('message', message);
         this.getErrorMessage();
         this.loginForm.controls["password"].reset();
 

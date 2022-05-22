@@ -103,7 +103,7 @@ export class TrainingComponent implements OnInit {
         this.loading = false;
       }
     }, err => {
-      console.log('err:', err);
+      // console.log('err:', err);
       this.loading = false;
     })
   }
@@ -117,7 +117,7 @@ export class TrainingComponent implements OnInit {
       this.loading = false;
 
     }, err => {
-      console.log('err:', err);
+      // console.log('err:', err);
       this.loading = false;
     })
   }

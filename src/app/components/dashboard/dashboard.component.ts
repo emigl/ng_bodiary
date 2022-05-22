@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
     this.authService.logout(token).subscribe(response => {
       this.authService.rmLocalStorage();
     }, err => {
-      console.log('err', err)
+      // console.log('err', err)
     })
     if(token) {
       this.snackBar.open('¡Has cerrado sesión con éxito!', 'Cerrar', {

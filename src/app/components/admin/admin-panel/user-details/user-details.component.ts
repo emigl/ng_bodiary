@@ -55,7 +55,7 @@ export class UserDetailsComponent implements OnInit {
 
         this.loadingUser = false;
    }, err => {
-     console.log('err', err)
+    //  console.log('err', err)
      this.snackBar.open("No se puede obtener el usuario, puede que no exista.", "Cerrar", {
       duration:5000
     });
@@ -80,7 +80,7 @@ export class UserDetailsComponent implements OnInit {
       this.loading = false;
     }, err => {
       let { error } = err.error
-      console.log('err', err)
+      // console.log('err', err)
       this.getErrorMessage(error);
       this.loading = false;
     })

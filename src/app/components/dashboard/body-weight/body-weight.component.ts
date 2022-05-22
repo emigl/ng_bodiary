@@ -64,7 +64,7 @@ export class BodyWeightComponent implements OnInit {
       this.loading = false;
       
     }, err =>  {
-      console.log('err', err);
+      // console.log('err', err);
     })
   }
 

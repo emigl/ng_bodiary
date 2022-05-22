@@ -70,7 +70,7 @@ export class ImcComponent implements OnInit {
       this.loading = false;
       
     }, err =>  {
-      console.log('err', err);
+      // console.log('err', err);
     })
   }
 
