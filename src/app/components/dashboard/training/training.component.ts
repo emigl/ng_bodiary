@@ -16,24 +16,24 @@ export class TrainingComponent implements OnInit {
   loading:boolean = true;
   // Data for table
   newRegisterForm: FormGroup;
-  workoutDisplayTable?: Workout[];
-  filteredWorkouts?: Workout[];
-  workouts: Workout[] = [];
+  workoutDisplayTable?: Workout[]; // La información que se mostrará en la vista con los filtros, paginación y puesta en marcha.
+  filteredWorkouts?: Workout[]; // Los ejercicios de entrenamiento una vez filtrados.
+  workouts: Workout[] = []; // Los ejercicios de entrenamiento que nos trae el servidor.
   workoutsLength: number = 0;
   // Data for filter Select
   trainingExercises:any[] = [];
 
-  pageEvent!: PageEvent;
+  pageEvent!: PageEvent; // Clase que nos permite usar el paginador de Angular Material
 
-  _listFilter!: string;
+  _listFilter!: string; // Variable se utiliza con el método performFilter en el set de la variable. 
   get listFilter(): string {
     return this._listFilter;
   }
-  set listFilter(value: string) {
+  set listFilter(value: string) { 
     this._listFilter = value;
-    this.filteredWorkouts = this.listFilter ? this.performFilter(this.listFilter) : this.workouts;
+    this.filteredWorkouts = this.listFilter ? this.performFilter(this.listFilter) : this.workouts; // Aquí settea el valor de los entrenamientos llamando a la variable de filtrado si existe valor en listFilter, si no, le asigna el valor de los workouts sin filtrar
     this.workoutsLength = this.filteredWorkouts.length | 0;
-    this.pagination(this.pageEvent);
+    this.pagination(this.pageEvent); // Aqui actualiza la paginación de la tabla cada vez que se cmabia el valor de listFilter.
   }
   
 
@@ -42,14 +42,13 @@ export class TrainingComponent implements OnInit {
               private modalService: NgbModal,
               private fb: FormBuilder,
               ) {
-
                 
                 this.newRegisterForm = this.fb.group({
                   type: ['', Validators.required],
                   weight: ['', [Validators.required]],
                   sets: ['', [Validators.required]],
 
-                  reps: ['', [Validators.required,]],
+                  reps: ['', [Validators.required]],
                 })    
   }
 
@@ -67,11 +66,11 @@ export class TrainingComponent implements OnInit {
   }
 
   performFilter(filterBy: string): Workout[] {
-    if(filterBy != undefined){
-      filterBy = filterBy.toLocaleLowerCase();
+    if(filterBy != undefined){ // Si se le pasa un filtro por parámetro al set de la variable que filtra entonces:
+      filterBy = filterBy.toLocaleLowerCase(); // pone el filtro en minuscula
       
       return this.workouts.filter((workout: Workout) =>
-          workout.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+          workout.name.toLocaleLowerCase().indexOf(filterBy) !== -1); // retorna un filtrado de workouts cuyo nombre concuerde con la variable filterBy y sea diferente de -1
 
     } else {
       return this.workouts;
@@ -99,7 +98,6 @@ export class TrainingComponent implements OnInit {
         this.loading = false;
         
       } else {
-        this.snackBar.open(workouts.empty, 'Cerrar');
         this.loading = false;
       }
     }, err => {
@@ -126,8 +124,7 @@ export class TrainingComponent implements OnInit {
   pagination(event: PageEvent): PageEvent{
 
     this.workoutDisplayTable = this.workoutDisplayTable ?
-    this.filteredWorkouts?.slice(event.pageSize * event.pageIndex, event.pageSize * (event.pageIndex + 1)) :
-    undefined;
+    this.filteredWorkouts?.slice(event.pageSize * event.pageIndex, event.pageSize * (event.pageIndex + 1)) : undefined;
     return event;
 
   }
